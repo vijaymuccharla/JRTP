@@ -1,0 +1,61 @@
+@Test : To represent method as Junit method
+
+@BeforeClass    : To execute method before first test case execution
+
+@AfterClass : To execute method after last test case execution
+
+@Ignore : To skip method from current execution
+
+-> For business class methods we are going to write Junit methods
+
+-> For one business method we can write multiple unit  test methods
+
+-> When we are performing Unit testing, sometime we need to except Exceptions from target class method.
+
+-> When we are expecting an exception, we will use expected attribute in @Test annoation
+
+-----------------------------------------------------------------
+public Integer div(Integer a, Integer b) {
+		return a / b;
+}
+----------------------------------------------------------------
+@Test(expected = ArithmeticException.class)
+public void testDiv_02() {
+		calc.div(10, 0);
+}
+---------------------------------
+
+-> We can use timeout attribute in @Test annotation
+
+-> timeout attribute is used check target method execution completing within given amount of time or not
+
+-> If target method execution is taking more time than given value then then it will be terminated abnormally
+
+
+@Test(timeout = 1000)
+public void testDiv_03() {
+		calc.div(10, 2);
+}
+
+
+
+
+Unit Testing in Realtime Project
+--------------------------------
+-> In Realtime every application will be developed using MVC architecture
+
+-> IN application we will have below layers
+
+		a) Data Acces Layer (DAO)
+
+		b) Business/ServiceLayer
+
+		c) Web Layer
+
+		d) UI layer
+
+
+ -> JUnit we can use only to perform java classes unit testing
+
+ Note : We can't use Junit for jsp testing
+
