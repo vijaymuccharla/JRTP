@@ -1,6 +1,6 @@
 package com.vj;
 
-public class Addition {
+public class Calculate {
 
 	public int add(int x, int y) {
 		return x+y;
@@ -12,4 +12,9 @@ public class Addition {
 		else
 			return -(y-x);
 	}
+	
+	public int divide(int a, int b) {
+		return a/b;
+	}
+
 }
