@@ -65,6 +65,18 @@ Why we need mocking?
 What are the Mock frameworks available?
 Unit testing using mock frameworks
 
+Mocking is a process of creating substitube object for real object
+
+Mocking is very important as part of Unit testing
+
+To test our component in isolated manner we will use Mocking
+
+There are 2 types mock frameworks are available
+
+	1)Proxy Based (Ex: Easy Mock, Mockito)
+
+	2)Byte Code Manipulation (Ex: PowerMock & JMockit)
+
 When we are developing an application, we will use layered architecture (MVC) 
 
 In application we will be having below layers
