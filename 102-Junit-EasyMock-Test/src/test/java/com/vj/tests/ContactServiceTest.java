@@ -1,6 +1,7 @@
 package com.vj.tests;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,102 +19,125 @@ import com.vj.services.ContactServiceImpl;
 
 public class ContactServiceTest {
 
-	private static ContactServiceImpl service;
-	private static IContactDao proxyDao;
-	
+	private static ContactServiceImpl service1,service2;
+	private static IContactDao proxyDao1,proxyDao2;
+
 	public ContactServiceTest() {
 		System.out.println("ContactServiceTest.ContactServiceTest()");
 	}
 
 	@BeforeClass
 	public static void init() {
-		
+
 		System.out.println("ContactServiceTest.init()");
-		
+
 		//creating Contact Obj to return this data when findContactById() method on DAO
 		Contact contact=new Contact();
 		contact.setContactId(111);
 		contact.setContactName("maria");
 		contact.setContactAddrs("HYD");
 
-//________________________________________________________________
+		//________________________________________________________________
 		//setting temp names for DAO to return all names when findAllNames() called
 		List<String> names=new ArrayList();
 		names.add("John");
 		names.add("Sean");
 		names.add("Sam");
 		names.add("Tina");
-		
-//________________________________________________________________
+
+		//________________________________________________________________
 
 		//Creating Proxy obj for DAO
-		proxyDao=EasyMock.createMock(IContactDao.class);
+		proxyDao1=EasyMock.createMock(IContactDao.class);
+		proxyDao2=EasyMock.createMock(IContactDao.class);
 
-//________________________________________________________________
+		//________________________________________________________________
 		//set behaviours for proxy
-		EasyMock.expect(proxyDao.findNameById(777))
-				.andReturn("Vijay");
-		EasyMock.expect(proxyDao.findNameById(666))
-				.andReturn("Mani");
-//________________________________________________________________
+		EasyMock.expect(proxyDao1.findNameById(777))
+		.andReturn("Vijay");
+		EasyMock.expect(proxyDao1.findNameById(666))
+		.andReturn("Mani");
+		//________________________________________________________________
 		//behaviour for proxy when findAllNames() called on proxyDao
-		EasyMock.expect(proxyDao.findAllNames())
+		EasyMock.expect(proxyDao1.findAllNames())
 		.andReturn(names);
-//________________________________________________________________
+		
+		EasyMock.expect(proxyDao2.findAllNames())
+		.andReturn(null);
+		
+
+		//________________________________________________________________
 		//behaviour for proxy when findContactByContactById() called on proxyDao
 
-		EasyMock.expect(proxyDao.findContactByContactId(111))
-				.andReturn(contact);
-		EasyMock.expect(proxyDao.findContactByContactId(222))
-				.andReturn(null);
-//________________________________________________________________
+		EasyMock.expect(proxyDao1.findContactByContactId(111))
+		.andReturn(contact);
+		EasyMock.expect(proxyDao1.findContactByContactId(222))
+		.andReturn(null);
+		//________________________________________________________________
 
 		//repeat the behaviour
-		EasyMock.replay(proxyDao);
+		EasyMock.replay(proxyDao1);
 
-//________________________________________________________________
+		//________________________________________________________________
 		//service obj
-		service= new ContactServiceImpl();
+		service1= new ContactServiceImpl();
+		service2= new ContactServiceImpl();
 		//setter injection of proxyDao to ContactServiceImpl setter metthod
-		service.setDao(proxyDao);
+		service1.setDao(proxyDao1);
+		service2.setDao(proxyDao2);
 
 	}
 
 	@Test
+	//	@Ignore
 	public void testGetNameById_01() {
 		System.out.println("ContactServiceTest.testGetNameById_01()");
-		String name = service.getNameById(666);
+		String name = service1.getNameById(666);
 		System.out.println(name);
 		assertNotNull(name);
 	}
 
 	@Test
+//	@Ignore
 	public void testGetAllNames_01() {
 		System.out.println("ContactServiceTest.testGetAllNames_01()");
-		List<String> names=service.getAllNames();
+		List<String> names=service1.getAllNames();
 		for (String name : names) {
 			System.out.println(name);
 		}
 		assertNotNull(names);
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void testGetAllNames_02() {
+		System.out.println("ContactServiceTest.testGetAllNames_01()");
+		List<String> names=service2.getAllNames();
+		for (String name : names) {
+			System.out.println(name);
+		}
+	}
+
 	@Test(expected = NoDataFoundException.class)
+	//	@Ignore
 	public void testGetContactById_01(){
 		System.out.println("ContactServiceTest.testGetContactById_01()");
-		 service.getContactById(222);
+		service1.getContactById(222);
 	}
-	
+
 	@Test
+	//	@Ignore
 	public void testGetContactById_02(){
 		System.out.println("ContactServiceTest.testGetContactById_02()");
-		 service.getContactById(111);
+		service1.getContactById(111);
 	}
 
 	@AfterClass
 	public static void destroy() {
 		System.out.println("ContactServiceTest.destroy()");
-		proxyDao=null;
-		service=null;
+		proxyDao1=null;
+		proxyDao2=null;
+		service1=null;
+		service2=null;
 	}
 
 }

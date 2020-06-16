@@ -30,7 +30,7 @@ public class ContactServiceImpl implements IContactService {
 	public List<String> getAllNames() {
 		System.out.println("ContactServiceImpl.getAllNames()");
 		List<String> names = contactDao.findAllNames();
-		if(!names.isEmpty()) {
+		if(names!=null) {
 			return names;
 		}
 		return null;
