@@ -189,3 +189,79 @@ Dependencies
 			<scope>test</scope>
 		</dependency>
 </dependencies>
+
+**********************************************************************************
+18-Jun-2020
+-----------------------------------------------------
+-> Jacoco is a plugin which is used to generate code coverage report
+
+-> To generate code coverage report using jacoco we should add that plugin in our pom.xml file
+
+-> Jacoco plugin will be executing after maven test phase is executed
+
+-> maven test goal or phase is used to run test cases availabe in project
+
+-> Test cases we will implement using JUnit framework
+
+-> As part of Unit testing we will use Mock objects
+
+-> Mock object is a substituete for real objects
+
+-> Mock objects are used for isolated testing
+
+-> With Code coverage report, we can see which lines of code is not executed as part of unit testing
+
+-> Our unit testing scenarios can be improved with this coverage report.
+
+---------------------------------------------------------------------
+
+-> In project, we should perform unit testing for the clases which contains business logic
+
+		a)Controller
+		b)Service
+		c)Dao
+		d)Utility classes (Pwd Encryptor & Decryptor, Mail Sender, DateUtils etc...)
+
+-> We can avoid unit testing for below classes
+		
+		1)Java Beans
+		2)Pojo
+		3)Entity
+		4)Configuration
+
+-> We can avoid/exclude the above classes from Code Coverage report bcz those classes will not contain any business logic.
+
+Note: By default jacoco will consider all the classes available in project
+
+Syntax to exclude a package from Jacoco
+---------------------------------------------
+<configuration>
+  <excludes>
+	<exclude>**com/ashokit/model/**</exclude>
+  </excludes>
+</configuration>
+
+Note: If we exclude a package, all the classes available in that pkg will be excluded.
+
+Syntax to exclude a specific class from jacoco
+----------------------------------------------
+<exclude>**com/ashokit/model/User**</exclude>
+
+Note: We can't exclude specific methods available in class.
+
+Note: We shouldn't exclude the classes from coverage which contains business logic (service, dao, controller & utility classes)
+
+
+
+-> We used EasyMock framework to create mock objects
+
+-> Easy Mock framework belongs to Proxy Based Mocking Framework
+
+Proxy Based Mock frameworks having below drawbacks
+--------------------------------------------------
+-> No support for private methods
+-> No support for static methods
+-> No support for final methods	
+-> No support for final classes
+
+-> To avoid above drawbacks we will use Byte code manipulation based Mock frameworks (Ex: Power Mock, JMockit)

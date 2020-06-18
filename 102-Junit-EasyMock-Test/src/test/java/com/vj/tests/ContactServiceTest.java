@@ -49,7 +49,6 @@ public class ContactServiceTest {
 
 		//Creating Proxy obj for DAO
 		proxyDao1=EasyMock.createMock(IContactDao.class);
-		proxyDao2=EasyMock.createMock(IContactDao.class);
 
 		//________________________________________________________________
 		//set behaviours for proxy
@@ -62,7 +61,7 @@ public class ContactServiceTest {
 		EasyMock.expect(proxyDao1.findAllNames())
 		.andReturn(names);
 		
-		EasyMock.expect(proxyDao2.findAllNames())
+		EasyMock.expect(proxyDao1.findAllNames())
 		.andReturn(null);
 		
 
@@ -81,10 +80,8 @@ public class ContactServiceTest {
 		//________________________________________________________________
 		//service obj
 		service1= new ContactServiceImpl();
-		service2= new ContactServiceImpl();
 		//setter injection of proxyDao to ContactServiceImpl setter metthod
 		service1.setDao(proxyDao1);
-		service2.setDao(proxyDao2);
 
 	}
 
@@ -111,7 +108,7 @@ public class ContactServiceTest {
 	@Test(expected = NullPointerException.class)
 	public void testGetAllNames_02() {
 		System.out.println("ContactServiceTest.testGetAllNames_01()");
-		List<String> names=service2.getAllNames();
+		List<String> names=service1.getAllNames();
 		for (String name : names) {
 			System.out.println(name);
 		}
@@ -135,9 +132,7 @@ public class ContactServiceTest {
 	public static void destroy() {
 		System.out.println("ContactServiceTest.destroy()");
 		proxyDao1=null;
-		proxyDao2=null;
 		service1=null;
-		service2=null;
 	}
 
 }
