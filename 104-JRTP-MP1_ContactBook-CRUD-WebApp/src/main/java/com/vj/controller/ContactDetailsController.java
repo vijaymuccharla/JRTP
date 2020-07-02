@@ -15,38 +15,43 @@ public class ContactDetailsController {
 
 	@Autowired
 	private ContactRepository repo;
-	
-	
+
 	/**
-	 * 
+	 * This method takes GET mode request with 
+	 * URL pattern "/" or "/loadForm" for ContactsBook homepage
 	 * @return
 	 */
-	@GetMapping(value = {""})
-	public String loadContactForm() {
-		
-		return "";
+	@GetMapping(value = { "/", "/loadForm" })
+	public String loadContactForm(Model model) {
+		//emty biding model obj to map with form data
+		Contact c=new Contact();
+		//add it to model attribute.
+		model.addAttribute("contact", c);
+		//return LVN of homepage 
+		return "contactInfo";
 	}
-	
+
 	/**
 	 * 
 	 * @param c
 	 * @param model
 	 * @return
 	 */
+	/*
 	@PostMapping(value = {""})
 	public String handleSubmitButton(@ModelAttribute("contact") Contact c, Model model) {
-		
-		return "";
+	
+	return "";
 	}
 	
-	/**
-	 * 
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = {""})
-	public String handleViewAllContactsListLink(Model model) {
-		
-		return "";
-	}
+	*//**
+		* 
+		* @param model
+		* @return
+		*//*
+			@GetMapping(value = {""})
+			public String handleViewAllContactsListLink(Model model) {
+			
+			return "";
+			}*/
 }
