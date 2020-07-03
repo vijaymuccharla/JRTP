@@ -1,13 +1,13 @@
 server:
   port: 2525
   servlet:
-    context-path: /contacts
+    context-path: /contacts  
 spring:
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
     password: vijay
     url: jdbc:oracle:thin:@localhost:1521/orcl
     username: vijay
+    driver-class-name: oracle.jdbc.driver.OracleDriver 
   jpa:
     hibernate:
       ddl-auto: update
