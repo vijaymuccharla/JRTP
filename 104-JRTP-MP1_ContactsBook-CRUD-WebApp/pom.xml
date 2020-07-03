@@ -8,7 +8,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
+	</parent> 
 	<groupId>com.vj</groupId>
 	<artifactId>104-JRTP-MP1_ContactsBook-CRUD-WebApp</artifactId>
 	<version>1.0</version>
