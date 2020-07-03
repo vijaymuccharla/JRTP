@@ -1,11 +1,14 @@
 package com.vj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vj.model.Contact;
 import com.vj.service.ContactService;
@@ -32,34 +35,41 @@ public class ContactDetailsController {
 	}
 
 	/**
-	 * This method takes POST request with binded form data of Contact.
-	 * 
+	 * 1. This method takes POST request with binded form data of Contact.
+	 * 2. RedirectFlashAttributes will help us to access the model data 
+	 * in redirected method as well.
 	 * @param c
 	 * @param model
 	 * @return
 	 */
 
 	@PostMapping(value = { "/loadForm" })
-	public String handleSubmitButton(@ModelAttribute("contact") Contact c, Model model) {
+	public String handleSubmitButton(@ModelAttribute("contact") Contact c, RedirectAttributes attributes) {
 
 		//use service and pass contact with data for Insert operation
 		boolean savedContact = service.saveContact(c);
 		if (savedContact) {
-			model.addAttribute("savedMsg", " Contact Save Successfully !! ");
+			attributes.addFlashAttribute("savedMsg", " Contact Saved Successfully !! ");
 		} else {
-			model.addAttribute("failedMsg", " Failed to save contact ! ");
+			attributes.addFlashAttribute("failedMsg", " Failed to save contact ! ");
 		}
-		return "contactInfo";
+		//redirect the response to GET mode form to avoid Double posting problem
+
+		return "redirect:/loadForm";
 	}
 
 	/**
 		* 
 		* @param model
 		* @return
-		*//*
-			@GetMapping(value = {""})
-			public String handleViewAllContactsListLink(Model model) {
-			
-			return "";
-			}*/
+		*/
+	@GetMapping(value = { "/displayAllContacts" })
+	public String handleViewAllContactsListLink(Model model) {
+		//use service to call repo for getting all contacts list
+		List<Contact> allContacts = service.getAllContacts();
+		//add all Contacts to Model Attribute
+		model.addAttribute("contacts", allContacts);
+		//return LVN of View All Contacts Page
+		return "displayAllContacts";
+	}
 }

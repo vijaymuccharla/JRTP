@@ -1,5 +1,6 @@
 package com.vj.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,11 +44,25 @@ public class ContactServiceImpl implements ContactService {
 	}
 
 	/**
-	 * 
+	 * 1. Use ContactRepository and call findAll() method to get all Contacts List
+	 * 2. Convert List of Entities to Binding objs
 	 */
 	@Override
 	public List<Contact> getAllContacts() {
-		return null;
+		//empty List of Contact Binding objects 
+		List<Contact> contacts=new ArrayList();
+		//returns List of Contact Entities
+		List<ContactEntity> entityList = repo.findAll();
+		entityList.forEach(entity->{
+			//empty Binding object
+			Contact c=new Contact();
+			//copy Entity to Binding obj
+			BeanUtils.copyProperties(entity, c);
+			//add Binding obj with data to List of ContactBinding objects
+			contacts.add(c);
+		});
+		//return list of Binding Contact Objects
+		return contacts;
 	}
 
 	/**

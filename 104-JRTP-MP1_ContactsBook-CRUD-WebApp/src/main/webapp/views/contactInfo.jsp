@@ -51,6 +51,9 @@ table, tr, th, td {
 					<td><input type="reset" value="clear" /></td>
 					<td><input type="submit" value="Save" /></td>
 				</tr>
+				<tr>
+					<td colspan="2"><h2><a href="/contacts/displayAllContacts"> View Contacts</a></h2></td>
+				</tr>
 
 			</table> 
 		</form:form>

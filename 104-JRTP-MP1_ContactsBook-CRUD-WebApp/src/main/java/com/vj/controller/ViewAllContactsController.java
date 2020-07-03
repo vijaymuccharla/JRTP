@@ -1,12 +1,15 @@
 package com.vj.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.vj.repository.ContactRepository;
 
 @Controller
 public class ViewAllContactsController {
 
-	/*@Autowired
-	private ContactRepository repo;*/
+	@Autowired
+	private ContactRepository repo;
 
 	/**
 	 * 
@@ -14,20 +17,21 @@ public class ViewAllContactsController {
 	 * @param model
 	 * @return
 	 */
-	/*
-	@GetMapping(value = {""})
+
+	/*@GetMapping(value = { "/editContact" })
 	public String editContactLink(Integer cid, Model model) {
 	
-	return "";
-	}
-	
-	*//**
+		return "";
+	}*/
+
+	/**
 		* 
 		* @param contact
 		* @param model
 		* @return
 		*/
 	/*
+	
 	@GetMapping(value = {""})
 	public String updateContact(Contact contact,Model model) {
 	
