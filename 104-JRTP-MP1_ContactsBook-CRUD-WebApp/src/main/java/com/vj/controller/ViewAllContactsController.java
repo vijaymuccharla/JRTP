@@ -44,13 +44,13 @@ public class ViewAllContactsController {
 	 * @return
 	 */
 	@GetMapping(value = { "/deleteContact" })
-	public String deleteContact(@RequestParam("contactId")Integer cid, RedirectAttributes attributes) {
+	public String deleteContact(@RequestParam("contactId") Integer cid, RedirectAttributes attributes) {
 		//use service and delete contact by ID
 		boolean deleteContact = service.deleteContact(cid);
-		if(deleteContact) {
-			attributes.addFlashAttribute ("deleteSuccess", " Contact deleted Successfully! ");
-		}else {
-			attributes.addFlashAttribute ("deleteFailed", " Failed to delete Contact ! ");
+		if (deleteContact) {
+			attributes.addFlashAttribute("deleteSuccess", " Contact deleted Successfully! ");
+		} else {
+			attributes.addFlashAttribute("deleteFailed", " Failed to delete Contact ! ");
 		}
 		return "redirect:/displayAllContacts";
 	}
