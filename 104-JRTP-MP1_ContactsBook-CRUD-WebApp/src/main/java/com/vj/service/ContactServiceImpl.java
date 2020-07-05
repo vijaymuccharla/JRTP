@@ -1,8 +1,8 @@
 package com.vj.service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import com.vj.repository.ContactRepository;
 
 @Service
 public class ContactServiceImpl implements ContactService {
-	
+
 	//inject Repository
 	@Autowired
 	private ContactRepository repo;
@@ -33,14 +33,21 @@ public class ContactServiceImpl implements ContactService {
 	 */
 	@Override
 	public boolean saveContact(Contact contact) {
-		
-		ContactEntity entity=new ContactEntity();
-		
+
+		//create an empty entity
+		ContactEntity entity = new ContactEntity();
+
+		//copy binding obj to entity obj
 		BeanUtils.copyProperties(contact, entity);
-		
+
+		/*
+		 save the record, here Save Method is a Polymorphic method.
+		It Inserts the record if there is no Contact ID given in entity.
+		It updates the record if there is Contact ID is present within entity obj
+		*/
 		ContactEntity savedEntity = repo.save(entity);
-		
-		return savedEntity.getContactId()!=null;
+
+		return savedEntity.getContactId() != null;
 	}
 
 	/**
@@ -49,44 +56,79 @@ public class ContactServiceImpl implements ContactService {
 	 */
 	@Override
 	public List<Contact> getAllContacts() {
+
+		//Get List of Contact Entities
+		List<ContactEntity> entityList = repo.findAll();
+
+		//legacy approach
+		/*
 		//empty List of Contact Binding objects 
 		List<Contact> contacts=new ArrayList();
-		//returns List of Contact Entities
-		List<ContactEntity> entityList = repo.findAll();
-		entityList.forEach(entity->{
+		
+			entityList.forEach(entity->{
+			
 			//empty Binding object
 			Contact c=new Contact();
+			
 			//copy Entity to Binding obj
 			BeanUtils.copyProperties(entity, c);
+			
 			//add Binding obj with data to List of ContactBinding objects
 			contacts.add(c);
 		});
+		
 		//return list of Binding Contact Objects
 		return contacts;
+		
+		*/
+
+		//java 8 approach
+		return entityList.stream().map(entity -> {
+			//empty Binding object
+			Contact c = new Contact();
+
+			//copy Entity to Binding obj
+			BeanUtils.copyProperties(entity, c);
+			//return contact
+			return c;
+		}).collect(Collectors.toList());
 	}
 
 	/**
-	 * 
+	 * use repo to get contact by id
 	 */
 	@Override
 	public Contact getContactById(Integer cid) {
+
+		Optional<ContactEntity> contactById = repo.findById(cid);
+
+		if (contactById.isPresent()) {
+
+			//convert ContactEntity to Contact
+			Contact c = new Contact();
+			//get entity
+			ContactEntity entity = contactById.get();
+			//copy entity to binding obj
+			BeanUtils.copyProperties(entity, c);
+
+			//return contact
+			return c;
+		}
 		return null;
+
 	}
 
 	/**
-	 * 
-	 */
-	@Override
-	public boolean updateContact(Contact c) {
-		return false;
-	}
-
-	/**
-	 * 
+	 * Delet contact by id
 	 */
 	@Override
 	public boolean deleteContact(Integer cid) {
-		return false;
+		if (cid != null) {
+			//delete contact by id
+			repo.deleteById(cid);
+			return true;
+		} else
+			return false;
 	}
 
 }

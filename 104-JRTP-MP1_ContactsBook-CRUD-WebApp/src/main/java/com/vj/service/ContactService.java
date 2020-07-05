@@ -27,15 +27,7 @@ public interface ContactService {
 	 * @return
 	 */
 	public Contact getContactById(Integer cid);
-	
-	/**
-	 * Takes Binding Contact Obj( given by above method)
-	 * data from Request and returns Boolean 
-	 * based on record updated or not 
-	 * @param c
-	 * @return
-	 */
-	public boolean updateContact(Contact c);
+
 	
 	/**
 	 * Takes Contact ID from Request data, 

@@ -26,6 +26,7 @@ table, tr, th, td {
 		<h2 style="color:red"> ${failedMsg }</h2>
 		<form:form action="loadForm" modelAttribute="contact"  method="POST">
 		 	<table>
+				<form:hidden path="contactId" />
 				<tr>
 					<th colspan="2">Contact Book App</th>
 				</tr>
@@ -52,7 +53,7 @@ table, tr, th, td {
 					<td><input type="submit" value="Save" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><h2><a href="/contacts/displayAllContacts"> View Contacts</a></h2></td>
+					<td colspan="2"><h2><a href="displayAllContacts"> View Contacts</a></h2></td>
 				</tr>
 
 			</table> 
