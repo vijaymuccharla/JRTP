@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title> All Contacts</title>
+<title>All Contacts</title>
 </head>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -15,7 +15,7 @@
 	src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <link
 	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
-	rel="stylesheet" type="text/css" >
+	rel="stylesheet" type="text/css">
 
 <script>
 	$(document).ready(function() {
@@ -49,7 +49,7 @@ table, tr, th, td {
 					<th colspan="6"><h2 style="color: navy;">All Contacts</h2></th>
 				</tr>
 				<tr>
-					<th colspan="6"><h2 style="color: teal;text-align: left"  >
+					<th colspan="6"><h2 style="color: teal; text-align: left">
 							<a href="loadForm">+ Add new</a>
 						</h2></th>
 				</tr>
@@ -63,8 +63,8 @@ table, tr, th, td {
 					<th><h3 style="color: red">Delete</h3></th>
 				</tr>
 			</thead>
-			<c:forEach items="${contacts }" var="contact" varStatus="index">
-				<tbody>
+			<tbody>
+				<c:forEach items="${contacts }" var="contact" varStatus="index">
 					<tr>
 						<th>${index.count}</th>
 						<th>${contact.contactName }</th>
@@ -79,8 +79,8 @@ table, tr, th, td {
 
 
 					</tr>
-				</tbody>
-			</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
 	</form:form>
 	<!-- </div> -->
