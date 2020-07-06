@@ -59,7 +59,7 @@ public class ContactDetailsController {
 	}
 
 	/**
-		* 
+		* Display all records
 		* @param model
 		* @return
 		*/
