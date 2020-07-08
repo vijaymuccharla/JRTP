@@ -3,6 +3,7 @@ package com.vj.service;
 import java.util.List;
 
 import com.vj.model.Contact;
+
 public interface ContactService {
 
 	/**
@@ -12,14 +13,14 @@ public interface ContactService {
 	 * @return
 	 */
 	public boolean saveContact(Contact contact);
-	
+
 	/**
 	 * Returns All available Contacts Records 
 	 * as List of Binding Contact Objs
 	 * @return
 	 */
 	public List<Contact> getAllContacts();
-	
+
 	/**
 	 * Takes ContactId from Request and Returns 
 	 * the respective Contact Record as Binding Contact Obj
@@ -28,7 +29,6 @@ public interface ContactService {
 	 */
 	public Contact getContactById(Integer cid);
 
-	
 	/**
 	 * Takes Contact ID from Request data, 
 	 * and returns Boolean based on 

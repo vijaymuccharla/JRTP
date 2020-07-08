@@ -29,6 +29,8 @@ table, tr, th, td {
 	<div align="center">
 		<h2 style="color: darkgreen">${savedMsg }</h2>
 		<h2 style="color: red">${failedMsg }</h2>
+		<h2 style="color: darkgreen">${updateMsg }</h2>
+		<h2 style="color: red">${updateFailMsg }</h2>
 		<form:form action="loadForm" modelAttribute="contact" method="POST"
 			name="contactsForm">
 			<table>

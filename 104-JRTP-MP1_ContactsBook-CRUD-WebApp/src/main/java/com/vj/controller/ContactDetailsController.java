@@ -48,13 +48,18 @@ public class ContactDetailsController {
 
 		//use service and pass contact with data for Insert operation
 		boolean savedContact = service.saveContact(c);
-		if (savedContact) {
-			attributes.addFlashAttribute("savedMsg", " Contact Saved Successfully !! ");
+		if (c.getContactId() == null) {
+			if (savedContact)
+				attributes.addFlashAttribute("savedMsg", " Contact Saved Successfully !! ");
+			else
+				attributes.addFlashAttribute("failedMsg", " Failed to save contact ! ");
 		} else {
-			attributes.addFlashAttribute("failedMsg", " Failed to save contact ! ");
+			if (savedContact)
+				attributes.addFlashAttribute("updateMsg", " Contact Updated Successfully !! ");
+			else
+				attributes.addFlashAttribute("updateFailMsg", " Failed to Update contact ! ");
 		}
 		//redirect the response to GET mode form to avoid Double posting problem
-
 		return "redirect:/loadForm";
 	}
 
