@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vj.entities.ContactEntity;
+import com.vj.exceptions.ContactsAppException;
 import com.vj.model.Contact;
 import com.vj.repository.ContactRepository;
 
@@ -34,20 +35,27 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public boolean saveContact(Contact contact) {
 
+		boolean isSaved = false;
+
 		//create an empty entity
 		ContactEntity entity = new ContactEntity();
 
-		//copy binding obj to entity obj
-		BeanUtils.copyProperties(contact, entity);
-
-		/*
-		 save the record, here Save Method is a Polymorphic method.
-		It Inserts the record if there is no Contact ID given in entity.
-		It updates the record if there is Contact ID is present within entity obj
-		*/
-		ContactEntity savedEntity = repo.save(entity);
-
-		return savedEntity.getContactId() != null;
+		try {
+			//copy binding obj to entity obj
+			BeanUtils.copyProperties(contact, entity);
+			/*
+			 save the record, here Save Method is a Polymorphic method.
+			It Inserts the record if there is no Contact ID given in entity.
+			It updates the record if there is Contact ID is present within entity obj
+			*/
+			ContactEntity savedEntity = repo.save(entity);
+			if (savedEntity.getContactId() != null) {
+				isSaved = true;
+			}
+		} catch (Exception e) {
+			throw new ContactsAppException();
+		}
+		return isSaved;
 	}
 
 	/**

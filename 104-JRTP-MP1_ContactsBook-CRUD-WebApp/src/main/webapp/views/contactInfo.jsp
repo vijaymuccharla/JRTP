@@ -57,7 +57,7 @@ table, tr, th, td {
 				</tr>
 
 				<tr>
-					<td><input type="reset" value="clear" /></td>
+					<td><input type="reset" value="Clear" /></td>
 					<td><input type="submit" value="Save" /></td>
 				</tr>
 				<tr>
