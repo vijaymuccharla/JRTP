@@ -1,0 +1,23 @@
+server:
+  port: 2525
+  servlet:
+    context-path: /contacts  
+spring:
+  datasource:
+    password: sa
+    url: jdbc:h2:mem:testdb
+    username: sa
+    driver-class-name: org.h2.Driver
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .jsp
+  h2:
+    console:
+      enabled: true
+      path: /h2
