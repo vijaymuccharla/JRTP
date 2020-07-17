@@ -39,15 +39,14 @@ public class ContactController {
 			return "redirect:/saveContact";
 		}
 	}
-	
+
 	@GetMapping("/validateEmail")
-	   @ResponseBody
-	   public String validateEmail(@RequestParam("email") String email ){
+	@ResponseBody
+	public String validateEmail(@RequestParam("email") String email) {
 		boolean emailExists = service.getContactByEmail(email);
-		if(emailExists)
+		if (emailExists)
 			return "duplicate";
-		else {
+		else
 			return "unique";
-		}
-	   }
+	}
 }
