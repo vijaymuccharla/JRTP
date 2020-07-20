@@ -15,6 +15,13 @@ public class EmailUtil {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
+	/**
+	 * https://mkyong.com/spring-boot/spring-boot-how-to-send-email-via-smtp/
+	 * @param to
+	 * @param subject
+	 * @param body
+	 * @return
+	 */
 	public String sendAnEmail(String[] to, String subject, String body) {
 		try {
 
@@ -40,6 +47,12 @@ public class EmailUtil {
 		return "Email sending failed";
 	}
 
+	/**
+	 * https://mkyong.com/spring-boot/spring-boot-how-to-send-email-via-smtp/
+	 * @param to
+	 * @param subject
+	 * @return
+	 */
 	public String sendEmailWithAttachment(String[] to, String subject) {
 
 		MimeMessage msg = javaMailSender.createMimeMessage();
