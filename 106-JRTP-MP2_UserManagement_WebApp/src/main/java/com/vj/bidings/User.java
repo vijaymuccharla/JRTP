@@ -21,7 +21,7 @@ public class User {
 	private Date createdDate;
 	private Date updatedDate;
 	private String userPassword;
-	
+
 }
 /*
  * 1. user_id

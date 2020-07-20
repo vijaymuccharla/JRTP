@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vj.bidings.User;
+import com.vj.constants.UserManagemetConstants;
 import com.vj.entities.CityEntity;
 import com.vj.entities.CountryEntity;
 import com.vj.entities.StateEntity;
@@ -17,6 +18,8 @@ import com.vj.repositories.CityRepository;
 import com.vj.repositories.CountryRepository;
 import com.vj.repositories.StateRepository;
 import com.vj.repositories.UserRepository;
+import com.vj.utils.EmailUtil;
+import com.vj.utils.RandomPasswordUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,6 +35,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	EmailUtil emailUtil;
 
 	/**
 	 * 
@@ -86,6 +92,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean insertNewUser(User user) {
+		//set account status to LOCKED using UserManagemetConstants(C)
+		user.setAccountStatus(UserManagemetConstants.getLockedStatus());
+		//set random / temp password by using RandomPasswordUtil(C)
+		user.setUserPassword(RandomPasswordUtil.generatePassword(UserManagemetConstants.getPasswordLngth()));
+		//Send an email with the Temp password and Unlock link
+		emailUtil.sendEmail(user.getUserEmail(), user);
 		//new User Entity obj
 		UserEntity entity = new UserEntity();
 		//convert Binding obj to Entity

@@ -80,10 +80,19 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./js/dropdowns.js"></script>
 
+<style>
+table, tr, th, td {
+	boder: 2px;
+	border-collapse: collapse;
+	background-color: darkgrey;
+	padding: 10px;
+	text-align: center;
+}
+</style>
+
+
 <body>
 	<div align="center">
-	<h2 style="color: green" >${addedMsg }</h2>
-	<h2 style="color: red" >${failedMsg}</h2>
 		<form:form action="addUser" modelAttribute="userModel" method="POST">
 			<table>
 				<thead>

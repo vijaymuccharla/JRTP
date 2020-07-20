@@ -21,3 +21,17 @@ spring:
     console:
       enabled: true
       path: /h2
+  mail:
+    port: 587
+    host: smtp.gmail.com
+    username: hibernatejpa@gmail.com
+    password: Techies@88
+    properties:
+      mail:
+       smtp:
+        auth: true
+        connectiontimeout: 10000
+        timeout: 10000
+        writetimeout: 10000
+        starttls:
+         enable: true

@@ -1,0 +1,16 @@
+<h2>Welcome {FNAME} {LNAME},</h2>
+<div align="center">
+<br/>
+
+<h2 style="color:green">Your registration is success with Legit Programmers. </h2>
+<h2 style="color:red">Plese use below details to unlock your account.</h2>
+<h1 style="color:darkblue">Use temporary password : {TEMP-PWD} </h1>
+<br/>
+
+<h1><a href='http://localhost:2525/unlockAcc?email={EMAIL}'>
+Click here to unlock your account</a> </h1><br/>
+<br/>
+
+</div>
+<h2>Thanks & Regards,<br/>
+Legit Team.</h2><br/>

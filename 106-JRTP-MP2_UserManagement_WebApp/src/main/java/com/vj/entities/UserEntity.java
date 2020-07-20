@@ -42,6 +42,7 @@ public class UserEntity {
 	@Column(name = "USER_PHONE")
 	private String userPhone;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "USER_DOB")
 	private Date userDob;
 

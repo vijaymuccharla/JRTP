@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,6 +24,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = { "/", "/addUser" })
 	public String loadRegisterForm(Model model) {
 		//empty user binding obj
@@ -38,7 +45,29 @@ public class UserController {
 		return "userregistration";
 	}
 
-	@GetMapping(value = { "/validateEmail" })
+	/**
+	 * 
+	 * @param user
+	 * @param attributes
+	 * @return
+	 */
+	@PostMapping(value = { "/addUser" })
+	public String handleSaveUserButton(@ModelAttribute("userModel") User user, Model model) {
+		boolean insertedUser = userService.insertNewUser(user);
+		if (insertedUser) {
+			model.addAttribute("addedMsg", " Registration success, please check your email to 'Unlock your Account'.");
+		} else {
+			model.addAttribute("failedMsg", " Registration Unsuccess, please try again.");
+		}
+		return "regsuccess";
+	}
+
+	/**
+	 * 
+	 * @param email
+	 * @return
+	 */
+	@RequestMapping(value = { "/validateEmail" }, method = RequestMethod.GET)
 	@ResponseBody
 	public String validateEmail(@RequestParam("email") String email) {
 		boolean emailExists = userService.getUserByEmail(email);
@@ -48,30 +77,28 @@ public class UserController {
 			return "unique";
 	}
 
-	@GetMapping(value = { "/getAllStates" })
+	/**
+	 * 
+	 * @param countryId
+	 * @return
+	 */
+	@RequestMapping(value = { "/getAllStates" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Map<Integer, String> getAllStatesByCountryId(@RequestParam("cntryId") Integer countryId) {
-		//user UserService return all states
+		//use UserService return all states
 		return userService.getAllStatesByCountryId(countryId);
 	}
 
-	@GetMapping(value = { "/getAllCities" })
+	/**
+	 * 
+	 * @param stateId
+	 * @return
+	 */
+	@RequestMapping(value = { "/getAllCities" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Map<Integer, String> getAllCitiesByStateId(@RequestParam("sttId") Integer stateId) {
-		//user UserService return all cities
+		//use UserService return all cities
 		return userService.getAllCitiesByStateId(stateId);
-	}
-
-	@PostMapping(value = { "/addUser" })
-	public String handleSaveUserButton(@ModelAttribute("userModel") User user, RedirectAttributes attributes) {
-		boolean insertedUser = userService.insertNewUser(user);
-		if (insertedUser) {
-			attributes.addFlashAttribute("addedMsg",
-					" Registration success, please check you email for the password to login.");
-		} else {
-			attributes.addFlashAttribute("failedMsg", " Registration Unsuccess, please try again.");
-		}
-		return "redirect:/addUser";
 	}
 
 }
