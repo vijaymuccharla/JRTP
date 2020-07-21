@@ -91,9 +91,10 @@ table, tr, th, td {
 </style>
 
 
+
 <body>
 	<div align="center">
-		<form:form action="addUser" modelAttribute="userModel" method="POST">
+		<form:form action="addUser" modelAttribute="userModel" method="POST" name="userForm">
 			<table>
 				<thead>
 					<tr>

@@ -1,4 +1,4 @@
-package com.vj.bidings;
+package com.vj.bindings;
 
 import java.util.Date;
 

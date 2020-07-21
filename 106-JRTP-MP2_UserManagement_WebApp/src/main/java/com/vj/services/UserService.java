@@ -2,8 +2,9 @@ package com.vj.services;
 
 import java.util.Map;
 
-import com.vj.bidings.User;
-import com.vj.repositories.UserRepository;
+import com.vj.bindings.Login;
+import com.vj.bindings.UnlockUser;
+import com.vj.bindings.User;
 
 public interface UserService {
 
@@ -43,5 +44,17 @@ public interface UserService {
 	 */
 	public boolean insertNewUser(User user);
 	
-		
+	/**
+	 * Validate user temp pwd to unlock user
+	 * @param tempPwd
+	 * @return
+	 */
+	public boolean validateTempPwd(UnlockUser user);
+	
+	/**
+	 * Validate user email and password by Login binding obj
+	 * @param login
+	 * @return
+	 */
+	public boolean loginCredentialsValid(Login login);
 }

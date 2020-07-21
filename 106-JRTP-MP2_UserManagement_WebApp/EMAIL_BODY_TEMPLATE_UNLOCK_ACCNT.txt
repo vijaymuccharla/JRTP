@@ -7,7 +7,7 @@
 <h1 style="color:darkblue">Use temporary password : {TEMP-PWD} </h1>
 <br/>
 
-<h1><a href='http://localhost:2525/unlockAcc?email={EMAIL}'>
+<h1><a href='http://localhost:2525/user/unlockUserAcc?email={EMAIL}'>
 Click here to unlock your account</a> </h1><br/>
 <br/>
 

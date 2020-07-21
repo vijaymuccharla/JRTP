@@ -11,7 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.vj.bidings.User;
+import com.vj.bindings.User;
 
 @Component
 public class EmailUtil {

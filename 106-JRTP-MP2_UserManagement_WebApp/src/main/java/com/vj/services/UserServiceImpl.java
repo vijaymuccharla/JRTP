@@ -8,7 +8,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.vj.bidings.User;
+import com.vj.bindings.Login;
+import com.vj.bindings.UnlockUser;
+import com.vj.bindings.User;
 import com.vj.constants.UserManagemetConstants;
 import com.vj.entities.CityEntity;
 import com.vj.entities.CountryEntity;
@@ -103,6 +105,40 @@ public class UserServiceImpl implements UserService {
 		//convert Binding obj to Entity
 		BeanUtils.copyProperties(user, entity);
 		if (userRepo.save(entity).getUserId() != null)
+			return true;
+		else
+			return false;
+	}
+
+	/**
+	 > Here save method works as polymorphic method to update the 
+	   record with new Account status : UNLOCKED
+	 */
+	@Override
+	public boolean validateTempPwd(UnlockUser user) {
+		//getUserByPassword using temp password
+		UserEntity userToUnlock = userRepo.findByUserPassword(user.getTempPazzword());
+
+		if (userToUnlock != null) {
+			//set account status to Unlocked & update with new password
+			userToUnlock.setAccountStatus("Unlocked");
+			userToUnlock.setUserPassword(user.getConfirmPazzword());
+			//update the same User enitity with new Account Status : Unlocked
+			UserEntity updatedUser = userRepo.save(userToUnlock);
+			if (updatedUser.getAccountStatus().equalsIgnoreCase("unlocked"))
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Authenticating Login user details by Email and Password from Login Binding obj
+	 */
+	@Override
+	public boolean loginCredentialsValid(Login login) {
+		//user repo 
+		UserEntity userFound = userRepo.findByUserEmailAndUserPassword(login.getUserEmail(), login.getUserPassword());
+		if (userFound!=null)
 			return true;
 		else
 			return false;
