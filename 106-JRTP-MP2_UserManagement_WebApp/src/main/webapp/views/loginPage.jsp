@@ -4,6 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+<body>
+
+	<!-- Navigation Block -->
+	<div class="bloc l-bloc" id="nav-bloc" align="center">
+		<div class="container">
+			<nav class="navbar row">
+				<div class="navbar-header">
+					<h1 style="color: white">Legit Programmers</h1>
+					<hr />
+				</div>
+
+			</nav>
+		</div>
+	</div>
+
+</body>
+
 <meta charset="ISO-8859-1">
 <title>Login</title>
 </head>
@@ -12,15 +29,15 @@
 table, tr, th, td {
 	boder: 2px;
 	border-collapse: collapse;
-	background-color: silver;
+	background-color: grey;
 	padding: 10px;
 	text-align: center;
 }
 </style>
 
 
-<body>
-	<div align="center">
+<body background="images/img3.jpg">
+	<div align="right">
 		<h5 style="color: red">${loginFailed }</h5>
 		<form:form action="userLogin" modelAttribute="loginModel"
 			method="POST">
@@ -28,7 +45,7 @@ table, tr, th, td {
 			<table>
 				<thead>
 					<tr>
-						<th colspan="2">Legit Programmers Login Page</th>
+						<th colspan="2">Login to your account</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -41,13 +58,12 @@ table, tr, th, td {
 						<td><form:password path="userPassword" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><input type="submit" value="Login" /></td>
+						<td colspan="2"><input type="submit" value="Sign-in" /></td>
 					</tr>
 					<tr>
-						<td colspan="2">Forgot password? <a href="resetPassword"><i>Reset.</i></a></td>
-					</tr>
-					<tr>
-					<td colspan="2">Don't have an account? <a href="addUser">Register here.</a></td>
+						<td>Don't have an account? <a href="addUser"><b>Signup
+									here.</b></a></td>
+						<td>Forgot password? <a href="resetPassword"><b><i>Reset.</i></b></a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -56,4 +72,10 @@ table, tr, th, td {
 
 	</div>
 </body>
+<hr />
+<!-- Site footer -->
+<footer>
+	<p><h5 style="color:white">Copyright &copy; 2020 All Rights Reserved by <b>Legit Programmers</b></h5></p>
+
+</footer>
 </html>

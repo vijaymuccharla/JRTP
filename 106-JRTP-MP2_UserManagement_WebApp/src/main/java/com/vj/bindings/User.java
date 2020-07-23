@@ -23,20 +23,22 @@ public class User {
 	private String userPassword;
 
 }
-/*
- * 1. user_id
- * 2. first_name
- * 3. last_name
- * 4. user_email
- * 5. user_phone
- * 6. user_dob
- * 7. user_gender
- * 8. country_id
- * 9. state_id
- * 10. city_id
- * 11. account_status
- * 12. created_date
- * 13. updated_date
- * 14. user_password
- * 
+/**
+ DB columns : 
+
+  1. user_id
+  2. first_name
+  3. last_name
+  4. user_email
+  5. user_phone
+  6. user_dob
+  7. user_gender
+  8. country_id
+  9. state_id
+  10. city_id
+  11. account_status
+  12. created_date
+  13. updated_date
+  14. user_password
+  
  */

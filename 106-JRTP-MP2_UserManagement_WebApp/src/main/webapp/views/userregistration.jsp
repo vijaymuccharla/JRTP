@@ -80,11 +80,17 @@ table, tr, th, td {
 	text-align: center;
 }
 </style>
+<style>
+body{
+  background: url(images/img1.jpg);
+  background-repeat: no-repeat;
+  background-size:  1800px;
+}
 
+</style>
 
-
-	<body bgcolor="#000001">
-	<div align="center">
+	<body background="images/img2.jpg">
+	<div align="center" >
 		<form:form action="addUser" modelAttribute="userModel" method="POST"
 			name="userForm">
 			<table>
