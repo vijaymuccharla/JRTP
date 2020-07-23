@@ -8,36 +8,25 @@
 <title>Registration</title>
 
 <!-- date picker -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jQuery UI Datepicker - Display month &amp; year menus</title>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+<!-- <script>
+	$(function() {
+		$("#dob").datepicker({
+			altFormat : "mm-dd-yy",
+			changeYear : true,
+			changeMonth : true,
+			dateFormat : "mm-dd-yy",
+			yearRange : '1940:2030'
+		});
+	});
+</script> -->
 
 </head>
-<script>
-	$(document).ready(function() {
-		$(function() {
-			$("#dob").datepicker({
-				changeMonth : true,
-				changeYear : true
-			});
-		});
-	});
 
-	$(document).ajaxComplete(function() {
-		$(function() {
-			$("#dob").datepicker({
-				changeMonth : true,
-				changeYear : true
-			});
-		});
-	});
-</script>
 
 <!-- unique email validation -->
 <script
@@ -70,6 +59,7 @@
 														}
 													});
 										});
+
 					});
 </script>
 
@@ -79,6 +69,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="./js/dropdowns.js"></script>
+
 
 <style>
 table, tr, th, td {
@@ -92,9 +83,10 @@ table, tr, th, td {
 
 
 
-<body>
+	<body bgcolor="#000001">
 	<div align="center">
-		<form:form action="addUser" modelAttribute="userModel" method="POST" name="userForm">
+		<form:form action="addUser" modelAttribute="userModel" method="POST"
+			name="userForm">
 			<table>
 				<thead>
 					<tr>
@@ -153,6 +145,9 @@ table, tr, th, td {
 					<tr>
 						<td><input type="reset" value="Reset"></td>
 						<td><input type="submit" value="Register"></td>
+					</tr>
+					<tr>
+						<td colspan="2">Already have an account? <a href="userLogin"><i>Login.</i></a></td>
 					</tr>
 				</tbody>
 			</table>

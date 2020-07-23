@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vj.bindings.Login;
@@ -40,14 +42,22 @@ public class LoginUserController {
 		//verify login details using UserService
 		boolean authentication = userService.loginCredentialsValid(login);
 		if (authentication) {
-			attributes.addFlashAttribute("welcomeName", login.getUserEmail() + ",");
-			return "userDashboard";
+			attributes.addFlashAttribute("welcomeName", login.getUserEmail());
+			return "redirect:/dashboard";
 		} else {
 			attributes.addFlashAttribute("loginFailed",
 					"Invalid Email/Password, please try again with valid credentials.");
 			return "redirect:/userLogin";
 		}
-		
-	
+	}
+	/**
+	 PRG pattern to dashboard so that user dont have to login 
+	 again when refreshing the dashboard page.
+	 
+	 * @return
+	 */
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+	public String redirectToDashboard() {
+		return "userDashboard";
 	}
 }

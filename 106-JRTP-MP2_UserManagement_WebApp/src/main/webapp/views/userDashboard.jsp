@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 </head>
 <body>
 	<div align="center">
-		Welcome <h3>${welcomeName }</h3>, <br />
+		<h3 style="color: blue">Welcome ${welcomeName } to your Dashboard.</h3> 
 		<br />
 		<br />
 		<h1>User Dashboard under construction, thank you.</h1>

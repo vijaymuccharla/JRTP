@@ -21,7 +21,7 @@ table, tr, th, td {
 
 <body>
 	<div align="center">
-		<h2 style="color: red">${loginFailed }</h2>
+		<h5 style="color: red">${loginFailed }</h5>
 		<form:form action="userLogin" modelAttribute="loginModel"
 			method="POST">
 
@@ -41,8 +41,10 @@ table, tr, th, td {
 						<td><form:password path="userPassword" /></td>
 					</tr>
 					<tr>
-						<td><a href="forgotPassword"><i>Forgot passowrd?</i></a></td>
-						<td><input type="submit" value="Login" /></td>
+						<td colspan="2"><input type="submit" value="Login" /></td>
+					</tr>
+					<tr>
+						<td colspan="2">Forgot password? <a href="resetPassword"><i>Reset.</i></a></td>
 					</tr>
 					<tr>
 					<td colspan="2">Don't have an account? <a href="addUser">Register here.</a></td>
