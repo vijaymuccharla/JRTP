@@ -11,7 +11,7 @@
 
 <h1 style="color: green"> ${unlockSuccess }</h1>
 <h1 style="color: red"> ${unlockFailed }</h1>
-<h2 style="color: blue"><a href="userLogin">Login to my account</a></h2>
+<h2 style="color: blue"><a href="userLogin">Our homepage</a></h2>
 </div>
 </body>
 </html>

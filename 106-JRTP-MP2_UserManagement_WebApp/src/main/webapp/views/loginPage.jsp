@@ -5,45 +5,45 @@
 <html>
 <head>
 <body>
-
-	<!-- Navigation Block -->
-	<div class="bloc l-bloc" id="nav-bloc" align="center">
-		<div class="container">
-			<nav class="navbar row">
-				<div class="navbar-header">
-					<h1 style="color: white">Legit Programmers</h1>
-					<hr />
-				</div>
-
-			</nav>
-		</div>
+	<div align="center">
+		<h1 style="color: white">Legit Programmers</h1>
+		<hr />
 	</div>
-
 </body>
 
 <meta charset="ISO-8859-1">
 <title>Login</title>
+<link rel="stylesheet" href="css/style.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 </head>
 
 <style>
 table, tr, th, td {
 	boder: 2px;
 	border-collapse: collapse;
-	background-color: grey;
+	background-color: lightgrey;
 	padding: 10px;
 	text-align: center;
 }
 </style>
 
+<script src="js/LoginValidations.js"></script>
 
 <body background="images/img3.jpg">
-	<div align="right">
-		<h5 style="color: red">${loginFailed }</h5>
+	<div align="center">
 		<form:form action="userLogin" modelAttribute="loginModel"
-			method="POST">
-
+			method="POST" name="LoginForm">
 			<table>
 				<thead>
+					<tr>
+						<td colspan="2">
+							<h5 style="color: red">${loginFailed }</h5>
+							<h5 style="color: red">${accountLocked }</h5>
+						</td>
+					</tr>
 					<tr>
 						<th colspan="2">Login to your account</th>
 					</tr>
@@ -75,7 +75,11 @@ table, tr, th, td {
 <hr />
 <!-- Site footer -->
 <footer>
-	<p><h5 style="color:white">Copyright &copy; 2020 All Rights Reserved by <b>Legit Programmers</b></h5></p>
-
+		<div align="center">
+			<h1 style="color: white">
+				Copyright &copy; 2020 All Rights Reserved by Legit
+					Programmers 
+			</h1>
+		</div>
 </footer>
 </html>

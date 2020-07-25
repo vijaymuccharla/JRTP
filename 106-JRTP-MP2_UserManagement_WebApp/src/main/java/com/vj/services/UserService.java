@@ -5,6 +5,7 @@ import java.util.Map;
 import com.vj.bindings.Login;
 import com.vj.bindings.UnlockUser;
 import com.vj.bindings.User;
+import com.vj.entities.UserEntity;
 
 public interface UserService {
 
@@ -56,5 +57,7 @@ public interface UserService {
 	 * @param login
 	 * @return
 	 */
-	public boolean loginCredentialsValid(Login login);
+	public UserEntity validateLoginCredentials(Login login);
+
+	public boolean accountUnlockedOrNot(UserEntity entity);
 }

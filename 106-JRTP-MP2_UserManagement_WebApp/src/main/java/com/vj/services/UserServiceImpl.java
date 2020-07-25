@@ -135,13 +135,23 @@ public class UserServiceImpl implements UserService {
 	 * Authenticating Login user details by Email and Password from Login Binding obj
 	 */
 	@Override
-	public boolean loginCredentialsValid(Login login) {
+	public UserEntity validateLoginCredentials(Login login) {
 		//user repo 
 		UserEntity userFound = userRepo.findByUserEmailAndUserPassword(login.getUserEmail(), login.getUserPassword());
-		if (userFound!=null)
-			return true;
+		if (userFound != null)
+			return userFound;
 		else
-			return false;
+			return null;
 	}
 
+	/**
+	 * check wheather user account is unlocked or not
+	 */
+	@Override
+	public boolean accountUnlockedOrNot(UserEntity entity) {
+		if (entity.getAccountStatus().equalsIgnoreCase("locked"))
+			return false;
+		else
+			return true;
+	}
 }

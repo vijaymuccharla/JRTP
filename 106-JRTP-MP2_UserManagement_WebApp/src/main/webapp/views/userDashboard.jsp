@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div align="center">
-		<h3 style="color: blue">Welcome ${welcomeName } to your Dashboard.</h3> 
+		<h3 style="color: blue">Welcome ${welcomeName } to Legit Programming.</h3> 
 		<br />
 		<br />
 		<h1>User Dashboard under construction, thank you.</h1>
