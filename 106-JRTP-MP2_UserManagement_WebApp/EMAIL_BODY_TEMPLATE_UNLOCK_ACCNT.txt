@@ -4,11 +4,12 @@
 
 <h2 style="color:green">Your registration is success with Legit Programmers. </h2>
 <h2 style="color:red">Plese use below details to unlock your account.</h2>
-<h1 style="color:darkblue">Use temporary password : {TEMP-PWD} </h1>
+<h1 style="color:darkblue">Use temporary/Current password : {TEMP-PWD} </h1>
 <br/>
+Please use a new password to UPDATE or RESET it.
 
 <h1><a href='http://localhost:2525/user/unlockUserAcc?email={EMAIL}'>
-Click here to unlock your account</a> </h1><br/>
+Click here to unlock/reset your account</a> </h1><br/>
 <br/>
 
 </div>

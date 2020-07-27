@@ -18,6 +18,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="js/LoginValidations.js"></script>
 </head>
 
 <style>
@@ -30,7 +31,6 @@ table, tr, th, td {
 }
 </style>
 
-<script src="js/LoginValidations.js"></script>
 
 <body background="images/img3.jpg">
 	<div align="center">
@@ -75,11 +75,9 @@ table, tr, th, td {
 <hr />
 <!-- Site footer -->
 <footer>
-		<div align="center">
-			<h1 style="color: white">
-				Copyright &copy; 2020 All Rights Reserved by Legit
-					Programmers 
-			</h1>
-		</div>
+	<div align="center">
+		<h1 style="color: white">Copyright &copy; 2020 All Rights
+			Reserved by Legit Programmers</h1>
+	</div>
 </footer>
 </html>

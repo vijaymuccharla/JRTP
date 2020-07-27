@@ -60,4 +60,6 @@ public interface UserService {
 	public UserEntity validateLoginCredentials(Login login);
 
 	public boolean accountUnlockedOrNot(UserEntity entity);
+
+	public void sendPasswordTo(String registeredEmail);
 }

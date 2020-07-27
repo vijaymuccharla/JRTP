@@ -154,4 +154,12 @@ public class UserServiceImpl implements UserService {
 		else
 			return true;
 	}
+
+	@Override
+	public void sendPasswordTo(String registeredEmail) {
+		UserEntity foundUser = userRepo.findByUserEmail(registeredEmail);
+		User user = new User();
+		BeanUtils.copyProperties(foundUser, user);
+		emailUtil.sendEmail(foundUser.getUserEmail(), user);
+	}
 }

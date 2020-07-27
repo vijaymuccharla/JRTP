@@ -26,7 +26,7 @@ public class EmailUtil {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message);
 
 			messageHelper.setTo(to);
-			messageHelper.setSubject("Unlock your User Account!");
+			messageHelper.setSubject("Unlock/Reset your User Account!");
 			messageHelper.setText(getUnlockAccEmailBody(user), true);
 
 			javaMailSender.send(message);
