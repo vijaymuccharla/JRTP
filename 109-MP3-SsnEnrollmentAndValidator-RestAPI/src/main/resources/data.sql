@@ -1,0 +1,1 @@
+create sequence ssn_seq start with 101001 increment by 1;
