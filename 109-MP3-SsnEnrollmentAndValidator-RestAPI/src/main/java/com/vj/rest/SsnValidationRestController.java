@@ -16,7 +16,7 @@ public class SsnValidationRestController {
 	private SsaService service;
 	
 	@GetMapping(value = "/validateSsn/{ssn}/{state}")
-	public ResponseEntity<String> ssnIsEnrolled(@PathVariable("ssn") String ssn, @PathVariable("state") String state){
+	public ResponseEntity<String> ssnIsEnrolledOrNot(@PathVariable("ssn") String ssn, @PathVariable("state") String state){
 		String ssnEnrolled = service.ssnEnrolledOrNot(Long.parseLong(ssn), state);
 		return new ResponseEntity<>(ssnEnrolled, HttpStatus.OK);
 	}
