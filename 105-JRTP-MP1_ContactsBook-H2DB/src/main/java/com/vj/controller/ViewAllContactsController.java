@@ -31,7 +31,7 @@ public class ViewAllContactsController {
 		//add binding obj to Model Attribute
 		model.addAttribute("contact", contact);
 		//return AssContact page to use it as Editable page 
-		return "contactInfo";
+		return "EditUser";
 	}
 
 	/**
