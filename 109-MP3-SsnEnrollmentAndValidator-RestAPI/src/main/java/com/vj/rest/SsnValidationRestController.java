@@ -20,4 +20,18 @@ public class SsnValidationRestController {
 		String ssnEnrolled = service.ssnEnrolledOrNot(Long.parseLong(ssn), state);
 		return new ResponseEntity<>(ssnEnrolled, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/validSsnStt/{ssn}/{state}")
+	public ResponseEntity<String> ssnIsValidOrNot(@PathVariable("ssn") String ssn, @PathVariable("state") String state){
+		String ssnEnrolled = service.ssnSttValidOrNot(Long.parseLong(ssn), state);
+		return new ResponseEntity<>(ssnEnrolled, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/validSsn/{ssn}")
+	public ResponseEntity<String> ssnFoundOrNot(@PathVariable("ssn") String ssn){
+		String ssnFound = service.ssnFoundOrNot(Long.parseLong(ssn));
+		return new ResponseEntity<>(ssnFound, HttpStatus.OK);
+	}
+	
+	
 }

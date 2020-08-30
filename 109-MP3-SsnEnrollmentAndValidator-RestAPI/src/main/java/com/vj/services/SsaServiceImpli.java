@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vj.entity.SsnMasterEntity;
+import com.vj.entity.SsnStateEntity;
 import com.vj.model.SsnEnrollmentRequest;
 import com.vj.repositories.SsnMasterRepository;
+import com.vj.repositories.SsnStateRepository;
 import com.vj.repositories.StatesDataRepository;
 
 @Service
@@ -16,6 +18,9 @@ public class SsaServiceImpli implements SsaService {
 
 	@Autowired
 	private SsnMasterRepository ssnRepo;
+
+	@Autowired
+	private SsnStateRepository ssnSttRepo;
 
 	@Autowired
 	private StatesDataRepository statesRepo;
@@ -54,6 +59,26 @@ public class SsaServiceImpli implements SsaService {
 
 		SsnMasterEntity ssnFound = ssnRepo.findBySsnAndStateName(ssn, stateName);
 		if (ssnFound != null)
+			return "valid";
+		else
+			return "invalid";
+	}
+
+	@Override
+	public String ssnFoundOrNot(Long ssn) {
+
+		SsnStateEntity found = ssnSttRepo.findBySsn(ssn);
+		if (found!= null)
+			return "found";
+		else
+			return "notfound";
+	}
+
+	@Override
+	public String ssnSttValidOrNot(Long ssn, String stateName) {
+
+		SsnStateEntity ssnSttFound = ssnSttRepo.findBySsnAndState(ssn, stateName);
+		if (ssnSttFound != null)
 			return "valid";
 		else
 			return "invalid";
