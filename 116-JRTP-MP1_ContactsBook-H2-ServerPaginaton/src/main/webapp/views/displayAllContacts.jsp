@@ -69,27 +69,27 @@ table, tr, th, td {
 				</tbody>
 			</table>
 		</form:form>
-		
-			
-		
-	<c:if test="${cpn > 1 }">
-		<a href="displayAllContacts?pno=${cpn-1}">Previous</a>
-	</c:if>
-	
-	<c:forEach begin="1" end="${tp}" var="pno">
-		<c:if test="${cpn == pno }">
+
+
+
+		<c:if test="${cpn > 1 }">
+			<a href="displayAllContacts?pno=${cpn-1}">Previous</a>
+		</c:if>
+
+		<c:forEach begin="1" end="${tp}" var="pno">
+			<c:if test="${cpn == pno }">
 		     ${pno}
 		</c:if>
-		<c:if test="${cpn != pno }">
-		    <a href="displayAllContacts?pno=${pno}">${pno}</a>
+			<c:if test="${cpn != pno }">
+				<a href="displayAllContacts?pno=${pno}">${pno}</a>
+			</c:if>
+		</c:forEach>
+
+		<c:if test="${cpn < tp }">
+			<a href="displayAllContacts?pno=${cpn+1}">Next</a>
 		</c:if>
-	</c:forEach>
-	
-	<c:if test="${cpn < tp }">
-		<a href="displayAllContacts?pno=${cpn+1}">Next</a>
-	</c:if>
-	
-		
+
+
 	</div>
 </body>
 </html>

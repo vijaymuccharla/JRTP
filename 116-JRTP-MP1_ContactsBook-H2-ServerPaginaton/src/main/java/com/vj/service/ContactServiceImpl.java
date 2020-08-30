@@ -65,7 +65,7 @@ public class ContactServiceImpl implements ContactService {
 	 */
 	@Override
 	public Page<ContactEntity> getAllContacts(int pageSize,int pageNo) {
-		PageRequest req = PageRequest.of(pageNo, pageSize);
+		PageRequest req = PageRequest.of(pageNo,pageSize);
 		Page<ContactEntity> allContacts = repo.findAll(req);
 		return allContacts;
 	}

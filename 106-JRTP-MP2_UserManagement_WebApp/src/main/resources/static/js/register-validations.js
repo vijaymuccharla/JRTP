@@ -31,8 +31,8 @@ $(function() {
 			firstName : "* Required.",
 			lstName : "* Required field.",
 			userPhone : "* Phone Required.",
-			userDob :	"* Date of birth required."
-			userGender : "* Please select gender."
+			userDob :	"* Date of birth required.",
+			userGender : "* Please select gender.",
 			userEmail : "* Email invalid!"
 		},
 		// Make sure the form is submitted to the destination defined
